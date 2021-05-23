@@ -1,10 +1,15 @@
+require('dotenv').config();
+const {APP_PORT, APP_HOST} = process.env;
 const Hapi = require('hapi');
 const control = require('./controller/repoController');
 
+console.log(APP_HOST);
+console.log(APP_PORT);
+
 const init = async () => {
     const server = Hapi.Server({
-        port: 3000,
-        host: 'localhost'
+        port: APP_PORT,
+        host: APP_HOST
     });
 
     server.route({
