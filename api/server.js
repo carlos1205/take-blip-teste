@@ -8,6 +8,12 @@ const init = async () => {
     });
 
     server.route({
+        config: {
+            cors: {
+                origin: ['*'],
+                additionalHeaders: ['cache-control', 'x-requested-with']
+            }
+        },
         method: 'GET',
         path: '/',
         handler: (request, h ) => {
