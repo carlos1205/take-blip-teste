@@ -18,10 +18,25 @@ const init = async () => {
         },
         method: 'GET',
         path: '/',
-        handler: (request, h ) => {
+        handler: (request, reply ) => {
             let data = control();
-
             return data;
+        }
+    });
+    
+    server.route({
+        config: {
+            cors: {
+                origin: ['*'],
+                additionalHeaders: ['cache-control', 'x-requested-with']
+            }
+        },
+        method: 'GET',
+        path: '/{id}',
+        handler: async (request, reply ) => {
+            const id =  parseInt(request.params.id);
+            let data = await control();
+            return data[id];
         }
     });
 
